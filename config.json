@@ -1,0 +1,16 @@
+{
+  "intents": [
+    "GUILDS",
+    "DIRECT_MESSAGES"
+  ],
+  "deployCommands": true,
+  "presence": {
+    "status": "online",
+    "activities": [
+      {
+        "type": "PLAYING",
+        "name": "with my friends"
+      }
+    ]
+  }
+}

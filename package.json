@@ -1,0 +1,35 @@
+{
+  "name": "discord-bot-template",
+  "version": "1.0.0",
+  "description": "Discord Bot template using discord.js",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start:dev": "tsc && node dist/src/index.js",
+    "start": "node dist/src/index.js",
+    "start:prod": "npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Derpinou/discord-bot-template.git"
+  },
+  "author": "Derpinou",
+  "license": "GNU General Public License v3.0",
+  "bugs": {
+    "url": "https://github.com/Derpinou/discord-bot-template/issues"
+  },
+  "homepage": "https://github.com/Derpinou/discord-bot-template#readme",
+  "dependencies": {
+    "@discordjs/rest": "^0.4.1",
+    "discord-api-types": "^0.32.1",
+    "discord.js": "^13.7.0",
+    "dotenv": "^16.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "eslint": "^8.12.0",
+    "typescript": "^4.0.2"
+  }
+}
