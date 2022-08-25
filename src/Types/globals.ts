@@ -9,7 +9,7 @@ export interface CommandOptions {
     memberPermissions?: PermissionsString[]
     botPermissions?: PermissionsString[]
     enabled?: boolean
-    options?: ApplicationCommandOption
+    options?: ApplicationCommandOption[]
     guildOnly?: boolean
 }
 

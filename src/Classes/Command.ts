@@ -15,6 +15,7 @@ export abstract class BaseCommand {
 		description = 'No description provided.',
 		enabled = true,
 		guildOnly = false,
+		options
 	} : CommandOptions) {
 		this.client = client;
 		this.name = filename ? filename.split(sep)[filename.split(sep).length - 1].replace('.js', '').toLowerCase(): 'Unkown';
@@ -36,6 +37,10 @@ export abstract class BaseCommand {
 		};
 		if (bit !== '0') {
 			this.applicationCommandBody['default_member_permissions'] = bit;
+		}
+
+		if (options) {
+			this.applicationCommandBody['options'] = options
 		}
 	}
 	abstract run (interaction: ChatInputCommandInteraction, data: any) : void;
