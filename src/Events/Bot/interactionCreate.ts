@@ -1,6 +1,6 @@
 import { Bot } from '../../Classes/Bot';
 import { BaseEvent } from '../../Classes/Event';
-import { CommandInteraction, Interaction } from 'discord.js';
+import { ChatInputCommandInteraction, Interaction } from 'discord.js';
 
 export default class InteractionCreate extends BaseEvent {
 	constructor (client: Bot) {
@@ -9,7 +9,7 @@ export default class InteractionCreate extends BaseEvent {
 
 	run (interaction: Interaction): void {
 		if (interaction.isCommand()) {
-			this.client.emit('commandInteractionCreate', (interaction as CommandInteraction));
+			this.client.emit('commandInteractionCreate', (interaction as ChatInputCommandInteraction));
 		}
 	}
 }

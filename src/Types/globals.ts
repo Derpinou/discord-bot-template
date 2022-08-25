@@ -1,4 +1,4 @@
-import { ApplicationCommandOption, PermissionString } from 'discord.js';
+import { ApplicationCommandOption, PermissionsString } from 'discord.js';
 import { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types/v10';
 
 export type BotHandlerType = 'Commands' | 'Events';
@@ -6,8 +6,8 @@ export type BotHandlerType = 'Commands' | 'Events';
 export interface CommandOptions {
     filename: string
     description: string
-    memberPermissions?: PermissionString[]
-    botPermissions?: PermissionString[]
+    memberPermissions?: PermissionsString[]
+    botPermissions?: PermissionsString[]
     enabled?: boolean
     options?: ApplicationCommandOption
     guildOnly?: boolean
@@ -16,7 +16,7 @@ export interface CommandOptions {
 export interface CommandConf {
     name: string
     enabled: boolean
-    botPermissions: PermissionString[]
+    botPermissions: PermissionsString[]
 }
 
 export type ExtendedRESTPostAPIApplicationCommandsJSONBody = RESTPostAPIApplicationCommandsJSONBody & {

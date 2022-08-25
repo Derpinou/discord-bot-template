@@ -1,5 +1,5 @@
 import { Bot } from './Bot';
-import { CommandInteraction, Permissions, PermissionString } from 'discord.js';
+import { ChatInputCommandInteraction, PermissionsBitField, PermissionsString } from 'discord.js';
 import { CommandConf, CommandOptions, ExtendedRESTPostAPIApplicationCommandsJSONBody } from '../Types/globals';
 import { sep } from 'path';
 
@@ -24,8 +24,8 @@ export abstract class BaseCommand {
 			botPermissions
 		};
 		const bitPerms: bigint[] = [];
-		memberPermissions.forEach((p: PermissionString) => {
-			bitPerms.push(Permissions.FLAGS[p] as bigint);
+		memberPermissions.forEach((p: PermissionsString) => {
+			bitPerms.push(PermissionsBitField.Flags[p] as bigint);
 		});
 		const bit = bitPerms.reduce((a, b) => a | b, 0n).toString();
 		this.applicationCommandBody = {
@@ -38,5 +38,5 @@ export abstract class BaseCommand {
 			this.applicationCommandBody['default_member_permissions'] = bit;
 		}
 	}
-	abstract run (interaction: CommandInteraction, data: any) : void;
+	abstract run (interaction: ChatInputCommandInteraction, data: any) : void;
 }
