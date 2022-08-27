@@ -4,7 +4,7 @@ import { readdir } from 'fs/promises';
 import { BotHandlerType } from '../Types/globals';
 import { BaseCommand } from './Command';
 import { BaseEvent } from './Event';
-import { REST} from '@discordjs/rest';
+import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v10';
 
 export class Bot extends Client {

@@ -7,7 +7,7 @@ export default class Ping extends BaseCommand {
 		super(client, {
 			filename: __filename,
 			description: 'Get response time of the bot.',
-			memberPermissions: ['SEND_MESSAGES', 'MANAGE_MESSAGES']
+			memberPermissions: ['SendMessages', 'ManageMessages']
 		});
 	}
 
