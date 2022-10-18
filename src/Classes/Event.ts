@@ -1,8 +1,12 @@
-import {Bot} from './Bot';
+import { EventsEmitterTypes, EventsOptions } from '../Types/globals';
+import { Bot } from './Bot';
 
 export abstract class BaseEvent {
-	protected constructor (protected readonly client: Bot) {
+	emitter: EventsEmitterTypes;
+	enabled: boolean;
+	protected constructor (protected readonly client: Bot, options?: EventsOptions) {
 		this.client = client;
+		this.emitter = options?.emitter || EventsEmitterTypes.Client;
 	}
-	abstract run (...args: any[]) : void
+	abstract run (...args: unknown[]) : void
 }

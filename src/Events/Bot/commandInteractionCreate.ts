@@ -26,6 +26,9 @@ export default class CommandInteractionCreate extends BaseEvent {
 				});
 			}
 		}
-		return cmd.run(interaction, {});
+		return cmd.run({ 
+			name: interaction.commandName,
+			interaction: interaction
+		});
 	}
 }

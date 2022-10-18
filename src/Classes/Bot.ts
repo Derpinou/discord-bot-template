@@ -1,7 +1,7 @@
 import { Application, Client, Collection } from 'discord.js';
 import { Config } from '../Types/config';
 import { readdir } from 'fs/promises';
-import { BotHandlerType } from '../Types/globals';
+import { BotHandlerType, EventsEmitterTypes } from '../Types/globals';
 import { BaseCommand } from './Command';
 import { BaseEvent } from './Event';
 import { REST } from '@discordjs/rest';
@@ -34,6 +34,7 @@ export class Bot extends Client {
 		for (const dir of dirs) {
 			const files = await Bot.getFilesFromPath(`./dist/src/${type}/${dir}`);
 			for (const file of files) {
+				// eslint-disable-next-line @typescript-eslint/no-var-requires
 				const jsFile = new (require(`../${type}/${dir}/${file}`).default)(this);
 				if (type === 'Commands') await this.loadCommand(jsFile);
 				else if (type === 'Events') await this.loadEvent(jsFile, file);
@@ -60,7 +61,16 @@ export class Bot extends Client {
 
 	private async loadEvent (event: BaseEvent, filename: string) {
 		console.log(`${event.constructor.name} event loaded. 👌`);
-		this.on(filename.split('.')[0], event.run.bind(event));
+
+		switch(event.emitter) {
+		case EventsEmitterTypes.Client:
+			this.on(filename.split('.')[0], event.run.bind(event));
+			break;
+
+		case EventsEmitterTypes.Process:
+			process.on(filename.split('.')[0], event.run.bind(event));
+			break;
+		}
 	}
 
 	private async deployCommands () {
