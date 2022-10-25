@@ -34,10 +34,11 @@ export class Bot extends Client {
 		for (const dir of dirs) {
 			const files = await Bot.getFilesFromPath(`./dist/src/${type}/${dir}`);
 			for (const file of files) {
-				// eslint-disable-next-line @typescript-eslint/no-var-requires
-				const jsFile = new (require(`../${type}/${dir}/${file}`).default)(this);
-				if (type === 'Commands') await this.loadCommand(jsFile);
-				else if (type === 'Events') await this.loadEvent(jsFile, file);
+				await import(`../${type}/${dir}/${file}`).then(async f => {
+					const jsFile = new (f.default)(this);
+					if(type === 'Commands') await this.loadCommand(jsFile);
+					else if(type === 'Events') await this.loadEvent(jsFile, file);
+				});
 			}
 		}
 	}
