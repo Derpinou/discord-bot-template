@@ -1,6 +1,6 @@
 import { Bot } from './Bot';
-import { ChatInputCommandInteraction, PermissionsBitField, PermissionsString } from 'discord.js';
-import { CommandConf, CommandOptions, ExtendedRESTPostAPIApplicationCommandsJSONBody } from '../Types/globals';
+import { PermissionsBitField, PermissionsString } from 'discord.js';
+import { CommandConf, CommandData, CommandOptions, ExtendedRESTPostAPIApplicationCommandsJSONBody } from '../Types/globals';
 import { sep } from 'path';
 
 export abstract class BaseCommand {
@@ -40,8 +40,8 @@ export abstract class BaseCommand {
 		}
 
 		if (options) {
-			this.applicationCommandBody['options'] = options
+			this.applicationCommandBody['options'] = options;
 		}
 	}
-	abstract run (interaction: ChatInputCommandInteraction, data: any) : void;
+	abstract run (data: CommandData) : void;
 }

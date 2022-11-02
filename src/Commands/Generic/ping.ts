@@ -1,6 +1,6 @@
 import { BaseCommand } from '../../Classes/Command';
 import { Bot } from '../../Classes/Bot';
-import { CommandInteraction } from 'discord.js';
+import { CommandData } from '../../Types/globals';
 
 export default class Ping extends BaseCommand {
 	constructor (client: Bot) {
@@ -11,7 +11,12 @@ export default class Ping extends BaseCommand {
 		});
 	}
 
-	async run (interaction: CommandInteraction) {
-		await interaction.reply('Pong!');
+	async run ({ interaction, name }: CommandData) {
+		await interaction.reply({
+			embeds: [{
+				title: name, // Display the name of the command
+				description: `Api latency ${this.client.ws.ping}`
+			}]
+		});
 	}
 }
