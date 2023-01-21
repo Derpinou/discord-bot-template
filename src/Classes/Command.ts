@@ -1,9 +1,10 @@
 import { Bot } from './Bot';
-import { PermissionsBitField, PermissionsString } from 'discord.js';
+import { AutocompleteInteraction, PermissionsBitField, PermissionsString } from 'discord.js';
 import { CommandConf, CommandData, CommandOptions, ExtendedRESTPostAPIApplicationCommandsJSONBody } from '../Types/globals';
-import { sep } from 'path';
+import { sep } from 'node:path';
 
 export abstract class BaseCommand {
+	public autocompleteFn: (interaction: AutocompleteInteraction) => void;
 	protected client: Bot;
 	private readonly name: string;
 	public conf: CommandConf;
